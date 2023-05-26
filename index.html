@@ -101,7 +101,7 @@
       const richtingVanuitNoord = 360 - pointDegree;
       compassCircle.style.transform = `translate(-50%, -50%) rotate(${-compass-richtingVanuitNoord}deg)`;
 
-      distanceTxt.value = "compass:" + compass + ", punt:" + pointDegree;
+      //distanceTxt.value = "compass:" + compass + ", punt:" + pointDegree;
       
       // ±15 degree
       if ((pointDegree < Math.abs(compass) && 
@@ -123,7 +123,7 @@
       const distance = calcDistance(latitude, longitude);
 
       //distanceTxt.value = "calculating...";
-      //distanceTxt.value = distance;
+      distanceTxt.value = distance;
       //distanceTxt.value = pointDegree;
 
       //pointDegree wijst naar het punt, in graden vanaf het noorden, waar je naartoe moet lopen
@@ -141,10 +141,9 @@
     function calcDistance(latitude, longitude) {
       // drempel bij mij
       const point = {
-        lat: 51.479843, 
-        lng: 4.297382
+        lat: 51.479846, 
+        lng: 4.297385
       };
-
 
       // Korenbeurssstraat
       //const point = {
@@ -175,8 +174,8 @@
 
       // drempel bij mij
       const point = {
-        lat: 51.479843, 
-        lng: 4.297382
+        lat: 51.479846, 
+        lng: 4.297385
       };
 
       // Korenbeurssstraat
