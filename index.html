@@ -60,6 +60,7 @@
     </div>
     <button class="start-btn">Start compass</button>
     <input type="text" id="distance" name="distance" class="distance" value="0">
+    
   </body>
   <script>
     const compassCircle = document.querySelector(".compass-circle");
@@ -98,12 +99,11 @@
       compass = e.webkitCompassHeading || Math.abs(e.alpha - 360);
       compassCircle.style.transform = `translate(-50%, -50%) rotate(${-compass}deg)`;
 
+      
+
       // ±15 degree
-      if (
-        (pointDegree < Math.abs(compass) &&
-          pointDegree + 15 > Math.abs(compass)) ||
-        pointDegree > Math.abs(compass + 15) ||
-        pointDegree < Math.abs(compass)
+      if ((pointDegree < Math.abs(compass) && pointDegree + 15 > Math.abs(compass)) ||
+        pointDegree > Math.abs(compass + 15) || pointDegree < Math.abs(compass)
       ) {
         myPoint.style.opacity = 0;
       } else if (pointDegree) {
@@ -120,9 +120,9 @@
 
       const distance = calcDistance(latitude, longitude);
 
-      distanceTxt.value = "calculating...";
-      distanceTxt.value = distance;
-
+      //distanceTxt.value = "calculating...";
+      //distanceTxt.value = distance;
+      distanceTxt.value = pointDegree;
 
       if (pointDegree < 0) {
         pointDegree = pointDegree + 360;
