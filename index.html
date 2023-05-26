@@ -99,7 +99,7 @@
       compass = e.webkitCompassHeading || Math.abs(e.alpha - 360);
       compassCircle.style.transform = `translate(-50%, -50%) rotate(${-compass}deg)`;
 
-      
+      distanceTxt.value = compass;
 
       // ±15 degree
       if ((pointDegree < Math.abs(compass) && pointDegree + 15 > Math.abs(compass)) ||
@@ -122,7 +122,7 @@
 
       //distanceTxt.value = "calculating...";
       //distanceTxt.value = distance;
-      distanceTxt.value = pointDegree;
+      //distanceTxt.value = pointDegree;
 
       if (pointDegree < 0) {
         pointDegree = pointDegree + 360;
