@@ -99,7 +99,7 @@
       compass = e.webkitCompassHeading || Math.abs(e.alpha - 360);
 
       const richtingVanuitNoord = 360 - pointDegree;
-      const richting = Math.abs(compass - richtingVanuitNoord);
+      const richting = Math.abs(-compass - richtingVanuitNoord);
 
       compassCircle.style.transform = `translate(-50%, -50%) rotate(${-compass-richtingVanuitNoord}deg)`;
 
