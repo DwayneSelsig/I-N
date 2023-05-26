@@ -59,7 +59,7 @@
       <div class="my-point"></div>
     </div>
     <button class="start-btn">Start compass</button>
-    <input type="text" id="distance" name="distance" class="distance" value="0">
+    <input type="text" id="distance" name="distance" class="distance" value="0"/>
     
   </body>
   <script>
@@ -139,11 +139,18 @@
 
 
     function calcDistance(latitude, longitude) {
-      // Korenbeurssstraat
+      // drempel bij mij
       const point = {
-        lat: 51.495218,
-        lng: 4.291660
+        lat: 51.479843, 
+        lng: 4.297382
       };
+
+
+      // Korenbeurssstraat
+      //const point = {
+      //  lat: 51.495218,
+      //  lng: 4.291660
+      //};
 
         var lat1 = latitude;
         var lon1 = longitude;
@@ -165,11 +172,18 @@
     }
 
     function calcDegreeToPoint(latitude, longitude) {
-      // Korenbeurssstraat
+
+      // drempel bij mij
       const point = {
-        lat: 51.495218,
-        lng: 4.291660
+        lat: 51.479843, 
+        lng: 4.297382
       };
+
+      // Korenbeurssstraat
+      //const point = {
+      //  lat: 51.495218,
+      //  lng: 4.291660
+      //};
 
       // Geitje
       //const point = {
