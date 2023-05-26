@@ -59,7 +59,7 @@
       <div class="my-point"></div>
     </div>
     <button class="start-btn">Start compass</button>
-    <input type="text" id="distance" name="distance" class="distance" value="0"/>
+    <input type="text" id="distance" name="distance" title="distance" class="distance" value="0"/>
     
   </body>
   <script>
@@ -99,9 +99,16 @@
       compass = e.webkitCompassHeading || Math.abs(e.alpha - 360);
 
       const richtingVanuitNoord = 360 - pointDegree;
-      compassCircle.style.transform = `translate(-50%, -50%) rotate(${-compass-richtingVanuitNoord}deg)`;
+      const richting = compass-richtingVanuitNoord;
+      compassCircle.style.transform = `translate(-50%, -50%) rotate(${-richting}deg)`;
 
-      //distanceTxt.value = "compass:" + compass + ", punt:" + pointDegree;
+      const kleur = 0; //groen
+
+
+      compassCircle.style["-webkit-filter"] = `saturate(200%) hue-rotate(${kleur}deg)`;
+      compassCircle.style["filter"] = `saturate(200%) hue-rotate(${kleur}deg)`;
+
+      distanceTxt.value = "Richting: " + richting + ", compass:" + compass + ", punt:" + pointDegree;
       
       // ±15 degree
       if ((pointDegree < Math.abs(compass) && 
@@ -122,9 +129,8 @@
 
       const distance = calcDistance(latitude, longitude);
 
-      //distanceTxt.value = "calculating...";
-      distanceTxt.value = distance;
-      //distanceTxt.value = pointDegree;
+      //distanceTxt.value = distance;
+     
 
       //pointDegree wijst naar het punt, in graden vanaf het noorden, waar je naartoe moet lopen
 
