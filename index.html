@@ -99,11 +99,13 @@
       compass = e.webkitCompassHeading || Math.abs(e.alpha - 360);
 
       const richtingVanuitNoord = 360 - pointDegree;
-      const richting = -compass-richtingVanuitNoord;
+      const richting = -compass-pointDegree;
 
       compassCircle.style.transform = `translate(-50%, -50%) rotate(${-compass-richtingVanuitNoord}deg)`;
 
-      const kleur = 0; //groen
+      const kleur = 0; //0 = groen; -120 = rood
+      
+
 
 
       compassCircle.style["-webkit-filter"] = `saturate(200%) hue-rotate(${kleur}deg)`;
