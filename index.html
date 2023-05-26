@@ -99,8 +99,8 @@
       compass = e.webkitCompassHeading || Math.abs(e.alpha - 360);
       compassCircle.style.transform = `translate(-50%, -50%) rotate(${-compass}deg)`;
 
-      distanceTxt.value = compass;
-
+      distanceTxt.value = pointDegree;
+      
       // ±15 degree
       if ((pointDegree < Math.abs(compass) && pointDegree + 15 > Math.abs(compass)) ||
         pointDegree > Math.abs(compass + 15) || pointDegree < Math.abs(compass)
@@ -123,6 +123,8 @@
       //distanceTxt.value = "calculating...";
       //distanceTxt.value = distance;
       //distanceTxt.value = pointDegree;
+
+      //pointDegree wijst naar het punt, in graden vanaf het noorden, waar je naartoe moet lopen
 
       if (pointDegree < 0) {
         pointDegree = pointDegree + 360;
