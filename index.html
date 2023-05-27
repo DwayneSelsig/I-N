@@ -127,11 +127,12 @@
 
     //0 = groen; -120 = rood
     let graden = 0;
-    if (compass + schermOrientatie > pointDegree) {
-      graden = (compass + schermOrientatie) - pointDegree;
+    if (compass > pointDegree) {
+      graden = compass - pointDegree;
     } else {
-      graden = pointDegree - (compass + schermOrientatie);
+      graden = pointDegree - compass;
     }
+    graden = graden + schermOrientatie;
     //graden moet altijd een negatief getal 
     if (graden > 0) {
       graden = graden * -1;
@@ -142,9 +143,6 @@
     }
     return graden;
   }
-
-
-
   
   function screenOrientation(orientation) {
     switch (orientation) {
