@@ -169,7 +169,6 @@
     compassCircle.style["filter"] = `saturate(250%) hue-rotate(${kleur}deg)`;
 
     //distanceTxt.textContent = "Scherm: " + schermOrientatie + ", compass:" + compass + ", punt:" + pointDegree + " kleur: " + kleur;
-    distanceTxt.textContent = "Scherm: " + schermOrientatie;
 
     // ±15 degree
     if ((pointDegree < Math.abs(compass) &&
@@ -232,7 +231,7 @@
 
     const distance = calcDistance(latitude, longitude);
 
-    //distanceTxt.textContent = "Ongeveer " + Math.round(distance) + " meter";
+    distanceTxt.textContent = "Ongeveer " + Math.round(distance) + " meter";
 
     if (distance < 20) {
       nextInfo.style.display = "block";

@@ -190,6 +190,9 @@
       graden = pointDegree - compass;
     }
     graden = graden + schermOrientatie;
+    if(screen.orientation.type == "landscape-secondary"){
+      graden = graden - 180;
+    }
     //graden moet altijd een negatief getal 
     if (graden > 0) {
       graden = graden * -1;
