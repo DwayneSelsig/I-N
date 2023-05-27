@@ -106,7 +106,7 @@
 
     compassCircle.style.transform = `translate(-50%, -50%) rotate(${(-compass - richtingVanuitNoord) + schermOrientatie}deg)`;
 
-    const kleur = afwijkingVanPunt(compass, pointDegree);
+    const kleur = afwijkingVanPunt(compass, pointDegree, schermOrientatie);
 
     compassCircle.style["-webkit-filter"] = `saturate(300%) hue-rotate(${kleur}deg)`;
     compassCircle.style["filter"] = `saturate(300%) hue-rotate(${kleur}deg)`;
@@ -123,16 +123,16 @@
     }
   }
 
-  function afwijkingVanPunt(compass, pointDegree) {
+  function afwijkingVanPunt(compass, pointDegree, schermOrientatie) {
 
     //0 = groen; -120 = rood
     let graden = 0;
-    if (compass > pointDegree) {
-      graden = (compass - pointDegree);
+    if (compass + schermOrientatie > pointDegree) {
+      graden = (compass + schermOrientatie) - pointDegree;
     } else {
-      graden = (pointDegree - compass);
+      graden = pointDegree - (compass + schermOrientatie);
     }
-    //graden moet altijd een positief getal 
+    //graden moet altijd een negatief getal 
     if (graden > 0) {
       graden = graden * -1;
     }
