@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Compas</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      background-color: whitesmoke;
+    }
+
+    .compass {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      margin: auto;
+      background-color: white;
+    }
+
+    .compass>.compass-circle,
+    .compass>.my-point {
+      position: absolute;
+      width: 90%;
+      height: 90%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease-out;
+      background: url("data:image/svg+xml,%3Csvg%20width%3D%221765%22%20height%3D%223824%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22m881%200.61646c-8.31%201.8667-13.558%2013.841-17.681%2020.384-11.9%2018.882-24.27%2037.426-36.652%2056-50.428%2075.642-99.238%20152.36-149.67%20228-166.26%20249.4-331.38%20500.01-493.69%20752-43.162%2067.01-87.094%20133.68-131.31%20200-12.412%2018.62-24.588%2037.38-37%2056-4.7649%207.15-14.011%2016.23-14.891%2025-1.5196%2015.14%2015.873%2012%2025.891%2012h483c10.326%200%2022.541-2.77%2025.485%2010%204.625%2020.07%201.515%2043.49%201.515%2064v2385c0%203.82-0.936%209.42%201.742%2012.57%202.648%203.11%207.617%202.43%2011.258%202.43h627c14.75%200%2035.82%203.9%2049.89-0.43%206.21-1.92%204.11-12.6%204.11-17.57v-2414c0-11.1-1.73-24.65%203.19-34.98%204.57-9.6%2017.03-7.02%2025.81-7.02h479c6.69%200%2027.52%203.14%2026.62-8-0.98-12.13-9.91-23.25-16.28-33-12.19-18.68-24.29-37.43-36.67-56-45.8-68.69-90.21-138.31-136-207-164.36-246.54-323.86-496.33-488-743-51.48-77.353-101.47-155.69-153-233-12.189-18.283-24.052-36.776-36.337-55-3.588-5.3235-9.507-16.141-17.33-14.384z%22%20fill%3D%22%23019741%22%2F%3E%3C%2Fsvg%3E") center no-repeat;
+      background-size: contain;
+    }
+
+    .compass>.my-point {
+      opacity: 0;
+      width: 20%;
+      height: 20%;
+      background: rgb(8, 223, 69);
+      border-radius: 50%;
+      transition: opacity 0.5s ease-out;
+    }
+
+    .start-btn {
+      margin-bottom: auto;
+    }
+
+    .distance {
+      margin-bottom: auto;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 40px;
+      text-align: center;
+    }
+
+    .next {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      left: 0;
+      top: 0;
+      background-color: darkgreen;
+      z-index: 1;
+      transition: opacity 0.5s ease-out;
+      opacity: 0;
+    }
+
+    .infoText {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-40%, -50%);
+      color: white;
+      z-index: 2;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .infoText .checkmark {
+      font-size: 200px;
+      margin: 0;
+      background: url("data:image/svg+xml,%3Csvg%20width%3D%22450%22%20height%3D%22400%22%20version%3D%221.1%22%20viewBox%3D%2285%20145%20450%20400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%20%3Cg%3E%20%20%3Cpath%20d%3D%22m508.74%20226.99c-49.323-33.818-72.659-63.395-72.659-63.395-91.086%2053.671-187.82%20244.24-187.82%20244.24-45.333-63.818-90.914-81.618-90.914-81.618-20.491%2027.382-55.813%2063.874-55.813%2063.874%2082.383%2022.187%20151.53%20103.61%20151.53%20103.61%20149.48-234.69%20255.67-266.71%20255.67-266.71z%22%20fill%3D%22%235fd35f%22%20fill-rule%3D%22evenodd%22%2F%3E%20%20%3Cpath%20transform%3D%22translate%288.5714%20-11.429%29%22%20d%3D%22m302.03%20528.36a64.286%207.1429%200%201%201-0.05156-0.03483%22%20fill%3D%22%23999%22%20opacity%3D%22.2%22%2F%3E%20%20%3Cpath%20d%3D%22m518.74%20227.28c-49.323-33.818-72.659-63.395-72.659-63.395-91.086%2053.671-187.82%20244.24-187.82%20244.24-45.333-63.818-90.914-81.618-90.914-81.618-20.491%2027.382-55.813%2063.874-55.813%2063.874%2082.383%2022.187%20151.53%20103.61%20151.53%20103.61%20149.48-234.69%20255.67-266.71%20255.67-266.71z%22%20fill%3D%22%235fd35f%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.27778%22%2F%3E%20%3C%2Fg%3E%3C%2Fsvg%3E") center no-repeat;
+      background-size: contain;
+      height: 200px;
+    }
+
+    .next {
+      display: none;
+    }
+    button{
+      background-color: #696969;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="next">
+    <div class="infoText">
+      <div class="checkmark"></div>
+      <p>Ga door naar het volgende punt:</p>
+      <button class="btnNext" onclick="window.location.href='/';">Volgende punt</button>
+    </div>
+  </div>
+  <div class="compass">
+    <div class="compass-circle"></div>
+    <!--<div class="my-point"></div>-->
+  </div>
+  <p id="distance" name="distance" title="distance" class="distance" value="0">&nbsp;</p>
+
+</body>
+<script>
+  const compassCircle = document.querySelector(".compass-circle");
+  //const myPoint = document.querySelector(".my-point");
+  const distanceTxt = document.getElementById("distance");
+  const nextInfo = document.querySelector(".next");
+  const isIOS =
+    navigator.userAgent.match(/(iPod|iPhone|iPad)/) &&
+    navigator.userAgent.match(/AppleWebKit/);
+
+  function init() {
+    compassCircle.addEventListener("click", startCompass);
+    navigator.geolocation.getCurrentPosition(locationHandler);
+    navigator.geolocation.watchPosition(locationHandler);
+
+    if (!isIOS) {
+      window.addEventListener("deviceorientationabsolute", handler, true);
+    }
+  }
+
+  function startCompass() {
+    if (isIOS) {
+      DeviceOrientationEvent.requestPermission()
+        .then((response) => {
+          if (response === "granted") {
+            window.addEventListener("deviceorientation", handler, true);
+          } else {
+            alert("has to be allowed!");
+          }
+        })
+        .catch(() => alert("not supported"));
+    }
+  }
+
+  function handler(e) {
+    compass = e.webkitCompassHeading || Math.abs(e.alpha - 360);
+
+    const richtingVanuitNoord = 360 - pointDegree;
+    const richting = -compass - pointDegree;
+
+    const schermOrientatie = screenOrientation(screen.orientation.type);
+
+    compassCircle.style.transform = `translate(-50%, -50%) rotate(${(-compass - richtingVanuitNoord) + schermOrientatie}deg)`;
+
+    const kleur = afwijkingVanPunt(compass, pointDegree, schermOrientatie);
+
+    compassCircle.style["-webkit-filter"] = `saturate(250%) hue-rotate(${kleur}deg)`;
+    compassCircle.style["filter"] = `saturate(250%) hue-rotate(${kleur}deg)`;
+
+    //distanceTxt.value = "Richting: " + richting + ", compass:" + compass + ", punt:" + pointDegree;
+
+    // ±15 degree
+    if ((pointDegree < Math.abs(compass) &&
+      pointDegree + 15 > Math.abs(compass)) || pointDegree > Math.abs(compass + 15) || pointDegree < Math.abs(compass)
+    ) {
+      //myPoint.style.opacity = 0;
+    } else if (pointDegree) {
+      //myPoint.style.opacity = 1;
+    }
+  }
+
+  function afwijkingVanPunt(compass, pointDegree, schermOrientatie) {
+
+    //0 = groen; -120 = rood
+    let graden = 0;
+    if (compass > pointDegree) {
+      graden = compass - pointDegree;
+    } else {
+      graden = pointDegree - compass;
+    }
+    graden = graden + schermOrientatie;
+    //graden moet altijd een negatief getal 
+    if (graden > 0) {
+      graden = graden * -1;
+    }
+
+    if (graden < -120) {
+      graden = -120;
+    }
+    return graden;
+  }
+
+  function screenOrientation(orientation) {
+    switch (orientation) {
+      case "landscape-primary":
+        return -90;
+      case "landscape-secondary":
+        return 90;
+      case "portrait-secondary":
+        return 180;
+      case "portrait-primary":
+        return 0;
+      default:
+        return 0;
+    }
+  }
+
+  let pointDegree;
+
+  function locationHandler(position) {
+    const { latitude, longitude } = position.coords;
+    pointDegree = calcDegreeToPoint(latitude, longitude);
+    //calculate distance in meters from current location to point
+
+    const distance = calcDistance(latitude, longitude);
+
+    distanceTxt.textContent = "Kruispunt " + Math.round(distance) + " meter";
+
+    if (distance < 12) {
+      nextInfo.style.display = "block";
+      document.body.offsetHeight; //enable css transition
+      nextInfo.style.opacity = 1;
+    }
+    else{
+      nextInfo.style.opacity = 0;
+      nextInfo.style.display = "none";
+    }
+
+
+    //pointDegree wijst naar het punt, in graden vanaf het noorden, waar je naartoe moet lopen
+
+    if (pointDegree < 0) {
+      pointDegree = pointDegree + 360;
+    }
+  }
+
+  function degreesToRadians(degrees) {
+    return degrees * Math.PI / 180;
+  }
+
+
+  function calcDistance(latitude, longitude) {
+    // Korenbeurssstraat
+    const point = {
+      lat: 51.495218,
+      lng: 4.291660
+    };
+
+    var lat1 = latitude;
+    var lon1 = longitude;
+    var lat2 = point.lat;
+    var lon2 = point.lng;
+
+    var earthRadiusM = 6378160;
+
+    var dLat = degreesToRadians(lat2 - lat1);
+    var dLon = degreesToRadians(lon2 - lon1);
+
+    lat1 = degreesToRadians(lat1);
+    lat2 = degreesToRadians(lat2);
+
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return earthRadiusM * c;
+  }
+
+  function calcDegreeToPoint(latitude, longitude) {
+
+    // Korenbeurssstraat
+    const point = {
+      lat: 51.495218,
+      lng: 4.291660
+    };
+
+    const phiK = (point.lat * Math.PI) / 180.0;
+    const lambdaK = (point.lng * Math.PI) / 180.0;
+    const phi = (latitude * Math.PI) / 180.0;
+    const lambda = (longitude * Math.PI) / 180.0;
+    const psi =
+      (180.0 / Math.PI) *
+      Math.atan2(
+        Math.sin(lambdaK - lambda),
+        Math.cos(phi) * Math.tan(phiK) -
+        Math.sin(phi) * Math.cos(lambdaK - lambda)
+      );
+    return Math.round(psi);
+  }
+
+  init();
+</script>
+
+</html>
