@@ -106,13 +106,10 @@
 
     compassCircle.style.transform = `translate(-50%, -50%) rotate(${(-compass - richtingVanuitNoord) + schermOrientatie}deg)`;
 
-    const kleur = 0; //0 = groen; -120 = rood
+    const kleur = afwijkingVanPunt(compass, pointDegree);
 
-
-
-
-    compassCircle.style["-webkit-filter"] = `saturate(200%) hue-rotate(${kleur}deg)`;
-    compassCircle.style["filter"] = `saturate(200%) hue-rotate(${kleur}deg)`;
+    compassCircle.style["-webkit-filter"] = `saturate(300%) hue-rotate(${kleur}deg)`;
+    compassCircle.style["filter"] = `saturate(300%) hue-rotate(${kleur}deg)`;
 
     distanceTxt.value = "Richting: " + richting + ", compass:" + compass + ", punt:" + pointDegree;
 
@@ -125,13 +122,35 @@
       myPoint.style.opacity = 1;
     }
   }
+
+  function afwijkingVanPunt(compass, pointDegree) {
+
+    //0 = groen; -120 = rood
+    let graden = 0;
+    if (compass > pointDegree) {
+      graden = (compass - pointDegree);
+    } else {
+      graden = (pointDegree - compass);
+    }
+    //graden moet altijd een positief getal 
+    if (graden > 180)
+    graden = graden * -1;
+
+    if (graden < -120) {
+      graden = -120;
+    }
+    return graden;
+  }
+
+
+
   
   function screenOrientation(orientation) {
     switch (orientation) {
       case "landscape-primary":
-        return 90;
-      case "landscape-secondary":
         return -90;
+      case "landscape-secondary":
+        return 90;
       case "portrait-secondary":
         return 180;
       case "portrait-primary":
