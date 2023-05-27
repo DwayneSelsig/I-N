@@ -111,7 +111,7 @@
     compassCircle.style["-webkit-filter"] = `saturate(300%) hue-rotate(${kleur}deg)`;
     compassCircle.style["filter"] = `saturate(300%) hue-rotate(${kleur}deg)`;
 
-    distanceTxt.value = "Richting: " + richting + ", compass:" + compass + ", punt:" + pointDegree;
+    //distanceTxt.value = "Richting: " + richting + ", compass:" + compass + ", punt:" + pointDegree;
 
     // ±15 degree
     if ((pointDegree < Math.abs(compass) &&
@@ -168,7 +168,7 @@
 
     const distance = calcDistance(latitude, longitude);
 
-    //distanceTxt.value = distance;
+    distanceTxt.value = distance;
 
 
     //pointDegree wijst naar het punt, in graden vanaf het noorden, waar je naartoe moet lopen
