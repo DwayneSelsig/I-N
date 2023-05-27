@@ -219,12 +219,14 @@
 
     distanceTxt.value = distance;
 
-    if (distance < 10) {
+    if (distance < 20) {
       nextInfo.style.display = "block";
+      nextInfo.style.opacity = 0;
       nextInfo.style.opacity = 1;
     }
     else{
       nextInfo.style.display = "none";
+      nextInfo.style.opacity = 1;
       nextInfo.style.opacity = 0;
     }
 
