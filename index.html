@@ -110,16 +110,14 @@
   </div>
   <div class="compass">
     <div class="compass-circle"></div>
-    <div class="my-point"></div>
+    <!--<div class="my-point"></div>-->
   </div>
-  <button class="start-btn">Start compass</button>
   <input type="text" id="distance" name="distance" title="distance" class="distance" value="0" />
 
 </body>
 <script>
   const compassCircle = document.querySelector(".compass-circle");
-  const myPoint = document.querySelector(".my-point");
-  const startBtn = document.querySelector(".start-btn");
+  //const myPoint = document.querySelector(".my-point");
   const distanceTxt = document.getElementById("distance");
   const nextInfo = document.querySelector(".next");
   const isIOS =
@@ -127,7 +125,7 @@
     navigator.userAgent.match(/AppleWebKit/);
 
   function init() {
-    startBtn.addEventListener("click", startCompass);
+    compassCircle.addEventListener("click", startCompass);
     navigator.geolocation.getCurrentPosition(locationHandler);
     navigator.geolocation.watchPosition(locationHandler);
 
