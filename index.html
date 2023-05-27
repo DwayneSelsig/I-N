@@ -61,7 +61,7 @@
       top: 0;
       background-color: darkgreen;
       z-index: 1;
-      transition: opacity 0.5s ease;
+      transition: opacity 0.5s ease-out;
       opacity: 0;
     }
 
@@ -226,11 +226,12 @@
 
     if (distance < 20) {
       nextInfo.style.display = "block";
+      nextInfo.style.opacity = 0.01;
       nextInfo.style.opacity = 1;
     }
     else{
-      nextInfo.style.display = "none";
       nextInfo.style.opacity = 0;
+      nextInfo.style.display = "none";
     }
 
 
