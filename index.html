@@ -171,9 +171,9 @@
     if ((pointDegree < Math.abs(compass) &&
       pointDegree + 15 > Math.abs(compass)) || pointDegree > Math.abs(compass + 15) || pointDegree < Math.abs(compass)
     ) {
-      myPoint.style.opacity = 0;
+      //myPoint.style.opacity = 0;
     } else if (pointDegree) {
-      myPoint.style.opacity = 1;
+      //myPoint.style.opacity = 1;
     }
   }
 
@@ -224,7 +224,7 @@
 
     distanceTxt.value = distance;
 
-    if (distance < 20) {
+    if (distance < 13) {
       nextInfo.style.display = "block";
       nextInfo.style.opacity = 0.01;
       nextInfo.style.opacity = 1;
