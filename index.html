@@ -168,7 +168,7 @@
     compassCircle.style["-webkit-filter"] = `saturate(250%) hue-rotate(${kleur}deg)`;
     compassCircle.style["filter"] = `saturate(250%) hue-rotate(${kleur}deg)`;
 
-    distanceTxt.textContent = "Scherm: " + schermOrientatie + ", compass:" + compass + ", punt:" + pointDegree + " kleur: " + kleur;
+    //distanceTxt.textContent = "Scherm: " + schermOrientatie + ", compass:" + compass + ", punt:" + pointDegree + " kleur: " + kleur;
 
     // ±15 degree
     if ((pointDegree < Math.abs(compass) &&
@@ -194,6 +194,8 @@
     if (graden > 0) {
       graden = graden * -1;
     }
+
+    distanceTxt.textContent = graden;
 
     if (graden < -120) {
       graden = -120;
