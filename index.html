@@ -189,13 +189,14 @@
     } else {
       graden = pointDegree - compass;
     }
+    distanceTxt.textContent = graden;
+
     graden = graden + schermOrientatie;
     //graden moet altijd een negatief getal 
     if (graden > 0) {
       graden = graden * -1;
     }
 
-    distanceTxt.textContent = graden;
 
     if (graden < -120) {
       graden = -120;
