@@ -169,6 +169,7 @@
     compassCircle.style["filter"] = `saturate(250%) hue-rotate(${kleur}deg)`;
 
     //distanceTxt.textContent = "Scherm: " + schermOrientatie + ", compass:" + compass + ", punt:" + pointDegree + " kleur: " + kleur;
+    distanceTxt.textContent = "Scherm: " + schermOrientatie;
 
     // ±15 degree
     if ((pointDegree < Math.abs(compass) &&
@@ -189,7 +190,7 @@
     } else {
       graden = pointDegree - compass;
     }
-    distanceTxt.textContent = graden;
+    //distanceTxt.textContent = graden;
 
     graden = graden + schermOrientatie;
     //graden moet altijd een negatief getal 
