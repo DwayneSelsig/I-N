@@ -56,7 +56,9 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      margin: auto;
+      margin: 0;
+      left: 0;
+      top: 0;
       background-color: darkgreen;
       z-index: 1;
       transition: opacity 0.5s ease-out;
@@ -76,6 +78,9 @@
     .infoText .checkmark {
       font-size: 200px;
       margin: 0;
+      background: url("data:image/svg+xml,%3Csvg%20width%3D%22450%22%20height%3D%22400%22%20version%3D%221.1%22%20viewBox%3D%2285%20145%20450%20400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%20%3Cg%3E%20%20%3Cpath%20d%3D%22m508.74%20226.99c-49.323-33.818-72.659-63.395-72.659-63.395-91.086%2053.671-187.82%20244.24-187.82%20244.24-45.333-63.818-90.914-81.618-90.914-81.618-20.491%2027.382-55.813%2063.874-55.813%2063.874%2082.383%2022.187%20151.53%20103.61%20151.53%20103.61%20149.48-234.69%20255.67-266.71%20255.67-266.71z%22%20fill%3D%22%235fd35f%22%20fill-rule%3D%22evenodd%22%2F%3E%20%20%3Cpath%20transform%3D%22translate%288.5714%20-11.429%29%22%20d%3D%22m302.03%20528.36a64.286%207.1429%200%201%201-0.05156-0.03483%22%20fill%3D%22%23999%22%20opacity%3D%22.2%22%2F%3E%20%20%3Cpath%20d%3D%22m518.74%20227.28c-49.323-33.818-72.659-63.395-72.659-63.395-91.086%2053.671-187.82%20244.24-187.82%20244.24-45.333-63.818-90.914-81.618-90.914-81.618-20.491%2027.382-55.813%2063.874-55.813%2063.874%2082.383%2022.187%20151.53%20103.61%20151.53%20103.61%20149.48-234.69%20255.67-266.71%20255.67-266.71z%22%20fill%3D%22%235fd35f%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.27778%22%2F%3E%20%3C%2Fg%3E%3C%2Fsvg%3E") center no-repeat;
+      background-size: contain;
+      height: 200px;
     }
 
     .next {
@@ -98,9 +103,9 @@
 <body>
   <div class="next">
     <div class="infoText">
-      <p class="checkmark">✔️</p>
+      <div class="checkmark"></div>
       <p>Ga door naar het volgende punt:</p>
-      <button class="btnNext">Volgende punt</button>
+      <button class="btnNext" onclick="window.location.href='/';">Volgende punt</button>
     </div>
   </div>
   <div class="compass">
@@ -221,12 +226,11 @@
 
     if (distance < 20) {
       nextInfo.style.display = "block";
-      nextInfo.style.opacity = 0;
+      nextInfo.style.opacity = 0.01;
       nextInfo.style.opacity = 1;
     }
     else{
       nextInfo.style.display = "none";
-      nextInfo.style.opacity = 1;
       nextInfo.style.opacity = 0;
     }
 
