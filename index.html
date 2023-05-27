@@ -31,10 +31,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       transition: transform 0.1s ease-out;
-/*
-Place the following SVG as the background of the compass-circle element
-<svg width="1765" height="3824" version="1.1" xmlns="http://www.w3.org/2000/svg"> <path d="m881 0.61646c-8.31 1.8667-13.558 13.841-17.681 20.384-11.9 18.882-24.27 37.426-36.652 56-50.428 75.642-99.238 152.36-149.67 228-166.26 249.4-331.38 500.01-493.69 752-43.162 67.01-87.094 133.68-131.31 200-12.412 18.62-24.588 37.38-37 56-4.7649 7.15-14.011 16.23-14.891 25-1.5196 15.14 15.873 12 25.891 12h483c10.326 0 22.541-2.77 25.485 10 4.625 20.07 1.515 43.49 1.515 64v2385c0 3.82-0.936 9.42 1.742 12.57 2.648 3.11 7.617 2.43 11.258 2.43h627c14.75 0 35.82 3.9 49.89-0.43 6.21-1.92 4.11-12.6 4.11-17.57v-2414c0-11.1-1.73-24.65 3.19-34.98 4.57-9.6 17.03-7.02 25.81-7.02h479c6.69 0 27.52 3.14 26.62-8-0.98-12.13-9.91-23.25-16.28-33-12.19-18.68-24.29-37.43-36.67-56-45.8-68.69-90.21-138.31-136-207-164.36-246.54-323.86-496.33-488-743-51.48-77.353-101.47-155.69-153-233-12.189-18.283-24.052-36.776-36.337-55-3.588-5.3235-9.507-16.141-17.33-14.384z" fill="#019741"/></svg>
-*/    background: url("data:image/svg+xml,%3Csvg%20width%3D%221765%22%20height%3D%223824%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22m881%200.61646c-8.31%201.8667-13.558%2013.841-17.681%2020.384-11.9%2018.882-24.27%2037.426-36.652%2056-50.428%2075.642-99.238%20152.36-149.67%20228-166.26%20249.4-331.38%20500.01-493.69%20752-43.162%2067.01-87.094%20133.68-131.31%20200-12.412%2018.62-24.588%2037.38-37%2056-4.7649%207.15-14.011%2016.23-14.891%2025-1.5196%2015.14%2015.873%2012%2025.891%2012h483c10.326%200%2022.541-2.77%2025.485%2010%204.625%2020.07%201.515%2043.49%201.515%2064v2385c0%203.82-0.936%209.42%201.742%2012.57%202.648%203.11%207.617%202.43%2011.258%202.43h627c14.75%200%2035.82%203.9%2049.89-0.43%206.21-1.92%204.11-12.6%204.11-17.57v-2414c0-11.1-1.73-24.65%203.19-34.98%204.57-9.6%2017.03-7.02%2025.81-7.02h479c6.69%200%2027.52%203.14%2026.62-8-0.98-12.13-9.91-23.25-16.28-33-12.19-18.68-24.29-37.43-36.67-56-45.8-68.69-90.21-138.31-136-207-164.36-246.54-323.86-496.33-488-743-51.48-77.353-101.47-155.69-153-233-12.189-18.283-24.052-36.776-36.337-55-3.588-5.3235-9.507-16.141-17.33-14.384z%22%20fill%3D%22%23019741%22%2F%3E%3C%2Fsvg%3E") center no-repeat;
+      background: url("data:image/svg+xml,%3Csvg%20width%3D%221765%22%20height%3D%223824%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22m881%200.61646c-8.31%201.8667-13.558%2013.841-17.681%2020.384-11.9%2018.882-24.27%2037.426-36.652%2056-50.428%2075.642-99.238%20152.36-149.67%20228-166.26%20249.4-331.38%20500.01-493.69%20752-43.162%2067.01-87.094%20133.68-131.31%20200-12.412%2018.62-24.588%2037.38-37%2056-4.7649%207.15-14.011%2016.23-14.891%2025-1.5196%2015.14%2015.873%2012%2025.891%2012h483c10.326%200%2022.541-2.77%2025.485%2010%204.625%2020.07%201.515%2043.49%201.515%2064v2385c0%203.82-0.936%209.42%201.742%2012.57%202.648%203.11%207.617%202.43%2011.258%202.43h627c14.75%200%2035.82%203.9%2049.89-0.43%206.21-1.92%204.11-12.6%204.11-17.57v-2414c0-11.1-1.73-24.65%203.19-34.98%204.57-9.6%2017.03-7.02%2025.81-7.02h479c6.69%200%2027.52%203.14%2026.62-8-0.98-12.13-9.91-23.25-16.28-33-12.19-18.68-24.29-37.43-36.67-56-45.8-68.69-90.21-138.31-136-207-164.36-246.54-323.86-496.33-488-743-51.48-77.353-101.47-155.69-153-233-12.189-18.283-24.052-36.776-36.337-55-3.588-5.3235-9.507-16.141-17.33-14.384z%22%20fill%3D%22%23019741%22%2F%3E%3C%2Fsvg%3E") center no-repeat;
       background-size: contain;
     }
 
@@ -54,10 +51,58 @@ Place the following SVG as the background of the compass-circle element
     .distance {
       margin-bottom: auto;
     }
+
+    .next {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      margin: auto;
+      background-color: darkgreen;
+      z-index: 1;
+      transition: opacity 0.5s ease-out;
+      opacity: 0;
+    }
+
+    .infoText {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-40%, -50%);
+      color: white;
+      z-index: 2;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .infoText .checkmark {
+      font-size: 200px;
+      margin: 0;
+    }
+
+    .next {
+      display: none;
+    }
+    button{
+      background-color: #696969;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      width: 100%;
+    }
   </style>
 </head>
 
 <body>
+  <div class="next">
+    <div class="infoText">
+      <p class="checkmark">✔️</p>
+      <p>Ga door naar het volgende punt:</p>
+      <button class="btnNext">Volgende punt</button>
+    </div>
+  </div>
   <div class="compass">
     <div class="compass-circle"></div>
     <div class="my-point"></div>
@@ -71,6 +116,7 @@ Place the following SVG as the background of the compass-circle element
   const myPoint = document.querySelector(".my-point");
   const startBtn = document.querySelector(".start-btn");
   const distanceTxt = document.getElementById("distance");
+  const nextInfo = document.querySelector(".next");
   const isIOS =
     navigator.userAgent.match(/(iPod|iPhone|iPad)/) &&
     navigator.userAgent.match(/AppleWebKit/);
@@ -146,7 +192,7 @@ Place the following SVG as the background of the compass-circle element
     }
     return graden;
   }
-  
+
   function screenOrientation(orientation) {
     switch (orientation) {
       case "landscape-primary":
@@ -172,6 +218,15 @@ Place the following SVG as the background of the compass-circle element
     const distance = calcDistance(latitude, longitude);
 
     distanceTxt.value = distance;
+
+    if (distance < 10) {
+      nextInfo.style.display = "block";
+      nextInfo.style.opacity = 1;
+    }
+    else{
+      nextInfo.style.display = "none";
+      nextInfo.style.opacity = 0;
+    }
 
 
     //pointDegree wijst naar het punt, in graden vanaf het noorden, waar je naartoe moet lopen
