@@ -164,10 +164,9 @@
     compassCircle.style.transform = `translate(-50%, -50%) rotate(${(-compass - richtingVanuitNoord) + schermOrientatie}deg)`;
 
     const kleur = afwijkingVanPunt(compass, pointDegree, schermOrientatie);
-    const verzadiging = 100 + (graden * -1);
 
-    compassCircle.style["-webkit-filter"] = `saturate(${verzadiging}%) hue-rotate(${kleur}deg)`;
-    compassCircle.style["filter"] = `saturate(${verzadiging}%) hue-rotate(${kleur}deg)`;
+    compassCircle.style["-webkit-filter"] = `saturate(250%) hue-rotate(${kleur}deg)`;
+    compassCircle.style["filter"] = `saturate(250%) hue-rotate(${kleur}deg)`;
 
     //distanceTxt.value = "Richting: " + richting + ", compass:" + compass + ", punt:" + pointDegree;
 
