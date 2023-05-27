@@ -50,6 +50,9 @@
 
     .distance {
       margin-bottom: auto;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 50px;
+      text-align: center;
     }
 
     .next {
@@ -112,7 +115,7 @@
     <div class="compass-circle"></div>
     <!--<div class="my-point"></div>-->
   </div>
-  <input type="text" id="distance" name="distance" title="distance" class="distance" value="0" />
+  <p id="distance" name="distance" title="distance" class="distance" value="0">&nbsp;</p>
 
 </body>
 <script>
@@ -220,11 +223,11 @@
 
     const distance = calcDistance(latitude, longitude);
 
-    distanceTxt.value = distance;
+    distanceTxt.textContent = Math.round(distance) + " meter";
 
     if (distance < 20) {
       nextInfo.style.display = "block";
-      document.body.offsetHeight;
+      document.body.offsetHeight; //enable css transition
       nextInfo.style.opacity = 1;
     }
     else{
