@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+</head>
+
+<body>
+    <div class="box">
+        <div class="scanText">
+            <h1>Latitude</h1>
+        </div>
+        <div class="scanText" id="latitude">
+            
+        </div>
+        <div class="scanText">
+            <h1>Longitude</h1>
+        </div>
+        <div class="scanText" id="longitude">
+            
+        </div>
+        <input type="text" name="location" id="location">
+    </div>
+</body>
+<script>
+
+
+    const latitudeTxt = document.getElementById("latitude");
+    const longitudeTxt = document.getElementById("longitude");
+    navigator.geolocation.getCurrentPosition(locationHandler);
+    navigator.geolocation.watchPosition(locationHandler);
+
+    function locationHandler(position) {
+        latitudeTxt.textContent = position.coords.latitude;
+        longitudeTxt.textContent = position.coords.longitude;
+    }
+</script>
+
+</html>

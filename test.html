@@ -1,0 +1,86 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+
+    <style>
+        body {
+            background: whitesmoke;
+        }
+
+        .box {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            left: 0;
+            top: 0;
+            outline-offset: 10px;
+            position: relative;
+        }
+
+        .box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 20px;
+            background: #18c89b;
+            box-shadow: 0 0 70px 20px #18c89b;
+            clip-path: inset(0);
+            animation:
+                x 1s ease-in-out infinite alternate,
+                y 2s ease-in-out infinite;
+        }
+
+        @keyframes x {
+            to {
+                transform: translateX(-100%);
+                left: 100%;
+            }
+        }
+
+        @keyframes y {
+            33% {
+                clip-path: inset(0 0 0 -100px);
+            }
+
+            50% {
+                clip-path: inset(0 0 0 0);
+            }
+
+            83% {
+                clip-path: inset(0 -100px 0 0);
+            }
+        }
+        .scanText {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 50px;
+            color: #080808;
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+    <title>Test</title>
+</head>
+
+<body>
+    <div class="box">
+        <div class="scanText">
+            <p>Coördinaten scannen</p>
+        </div>
+    </div>
+</body>
+<script>
+    setTimeout(function () {
+        document.querySelector(".scanText").innerHTML = "Coördinaten gevonden!";
+    }, 5000);
+
+    setTimeout(function () {
+        //window.location.href = "http://localhost:8080/scan";
+    }, 10000);
+</script>
+</html>
