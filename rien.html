@@ -227,7 +227,7 @@
 
     distanceTxt.textContent = "Ongeveer " + Math.round(distance) + " meter";
 
-    if (distance < 20) {
+    if (distance < 12) {
       nextInfo.style.display = "block";
       document.body.offsetHeight; //enable css transition
       nextInfo.style.opacity = 1;
@@ -236,8 +236,7 @@
       nextInfo.style.opacity = 0;
       nextInfo.style.display = "none";
     }
-
-
+    
     //pointDegree wijst naar het punt, in graden vanaf het noorden, waar je naartoe moet lopen
 
     if (pointDegree < 0) {
