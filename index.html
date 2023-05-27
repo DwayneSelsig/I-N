@@ -225,7 +225,7 @@
 
     const distance = calcDistance(latitude, longitude);
 
-    distanceTxt.textContent = Math.round(distance) + " meter";
+    distanceTxt.textContent = "Ongeveer " + Math.round(distance) + " meter";
 
     if (distance < 20) {
       nextInfo.style.display = "block";
