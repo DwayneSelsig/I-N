@@ -192,7 +192,7 @@
     }
     //distanceTxt.textContent = graden;
 
-    graden = graden + schermOrientatie;
+    graden = graden - schermOrientatie;
     //graden moet altijd een negatief getal 
     if (graden > 0) {
       graden = graden * -1;
@@ -208,9 +208,9 @@
   function screenOrientation(orientation) {
     switch (orientation) {
       case "landscape-primary":
-        return -90;
-      case "landscape-secondary":
         return 90;
+      case "landscape-secondary":
+        return -90;
       case "portrait-secondary":
         return 180;
       case "portrait-primary":
