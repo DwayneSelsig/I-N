@@ -110,7 +110,7 @@
   <div class="next">
     <div class="infoText">
       <div class="checkmark"></div>
-      <p>Ga door naar het volgende punt:</p>
+
       <button class="btnNext" onclick="window.location.href='/';">Volgende punt</button>
     </div>
   </div>
@@ -141,6 +141,13 @@
     switch (user.toLowerCase()) {
       case "ingo":
         switch (punt) {
+          case "0":
+            // drempel bij mij
+            return {
+              lat: 51.479846,
+              lng: 4.297385
+            };
+            break;
           case "1":
             // De zalm
             return {
@@ -302,6 +309,14 @@
       nextInfo.style.display = "block";
       document.body.offsetHeight; //enable css transition
       nextInfo.style.opacity = 1;
+      setTimeout(() => {
+        //get current url
+        var url = window.location.href;
+        //add 1 to punt
+        var newUrl = url.replace("punt=" + point.punt, "punt=" + (parseInt(point.punt) + 1));
+        //change url
+        window.history.pushState("", "", newUrl);
+      }, 5000);
     }
     else {
       nextInfo.style.opacity = 0;
