@@ -129,8 +129,14 @@
     const urlParams = new URLSearchParams(window.location.search);
     const user = urlParams.get('user');
     const punt = urlParams.get('punt');
-    alert(user);
+    if (!user || !punt) {
 
+      // drempel bij mij
+      return {
+        lat: 51.479846,
+        lng: 4.297385
+      };
+    }
 
     switch (user.toLowerCase()) {
       case "ingo":
@@ -178,187 +184,181 @@
         break;
     }
 
-
-    // drempel bij mij
-    return {
-      lat: 51.479846,
-      lng: 4.297385
-    };
   }
 
-    const compassCircle = document.querySelector(".compass-circle");
-    //const myPoint = document.querySelector(".my-point");
-    const distanceTxt = document.getElementById("distance");
-    const nextInfo = document.querySelector(".next");
-    const isIOS =
-      navigator.userAgent.match(/(iPod|iPhone|iPad)/) &&
-      navigator.userAgent.match(/AppleWebKit/);
+  const compassCircle = document.querySelector(".compass-circle");
+  //const myPoint = document.querySelector(".my-point");
+  const distanceTxt = document.getElementById("distance");
+  const nextInfo = document.querySelector(".next");
+  const isIOS =
+    navigator.userAgent.match(/(iPod|iPhone|iPad)/) &&
+    navigator.userAgent.match(/AppleWebKit/);
 
-    function init() {
-      compassCircle.addEventListener("click", startCompass);
-      navigator.geolocation.getCurrentPosition(locationHandler);
-      navigator.geolocation.watchPosition(locationHandler);
+  function init() {
+    compassCircle.addEventListener("click", startCompass);
+    navigator.geolocation.getCurrentPosition(locationHandler);
+    navigator.geolocation.watchPosition(locationHandler);
 
-      if (!isIOS) {
-        window.addEventListener("deviceorientationabsolute", handler, true);
-      }
+    if (!isIOS) {
+      window.addEventListener("deviceorientationabsolute", handler, true);
+    }
+  }
+
+  function startCompass() {
+    if (isIOS) {
+      DeviceOrientationEvent.requestPermission()
+        .then((response) => {
+          if (response === "granted") {
+            window.addEventListener("deviceorientation", handler, true);
+          } else {
+            alert("has to be allowed!");
+          }
+        })
+        .catch(() => alert("not supported"));
+    }
+  }
+
+  function handler(e) {
+    compass = e.webkitCompassHeading || Math.abs(e.alpha - 360);
+
+    const richtingVanuitNoord = 360 - pointDegree;
+    const richting = -compass - pointDegree;
+
+    const schermOrientatie = screenOrientation(screen.orientation.type);
+
+    compassCircle.style.transform = `translate(-50%, -50%) rotate(${(-compass - richtingVanuitNoord) + schermOrientatie}deg)`;
+
+    const kleur = afwijkingVanPunt(compass, pointDegree, schermOrientatie);
+
+    compassCircle.style["-webkit-filter"] = `saturate(250%) hue-rotate(${kleur}deg)`;
+    compassCircle.style["filter"] = `saturate(250%) hue-rotate(${kleur}deg)`;
+
+    //distanceTxt.textContent = "Scherm: " + schermOrientatie + ", compass:" + compass + ", punt:" + pointDegree + " kleur: " + kleur;
+
+    // ±15 degree
+    if ((pointDegree < Math.abs(compass) &&
+      pointDegree + 15 > Math.abs(compass)) || pointDegree > Math.abs(compass + 15) || pointDegree < Math.abs(compass)
+    ) {
+      //myPoint.style.opacity = 0;
+    } else if (pointDegree) {
+      //myPoint.style.opacity = 1;
+    }
+  }
+
+  function afwijkingVanPunt(compass, pointDegree, schermOrientatie) {
+
+    //0 = groen; -120 = rood
+    let graden = 0;
+    if (compass > pointDegree) {
+      graden = compass - pointDegree;
+    } else {
+      graden = pointDegree - compass;
+    }
+    //distanceTxt.textContent = graden;
+
+    graden = graden + schermOrientatie;
+
+    if (screen.orientation.type == "landscape-secondary") {
+      graden = graden - 180;
+    }
+    //graden moet altijd een negatief getal 
+    if (graden > 0) {
+      graden = graden * -1;
     }
 
-    function startCompass() {
-      if (isIOS) {
-        DeviceOrientationEvent.requestPermission()
-          .then((response) => {
-            if (response === "granted") {
-              window.addEventListener("deviceorientation", handler, true);
-            } else {
-              alert("has to be allowed!");
-            }
-          })
-          .catch(() => alert("not supported"));
-      }
+    if (graden < -120) {
+      graden = -120;
     }
+    return graden;
+  }
 
-    function handler(e) {
-      compass = e.webkitCompassHeading || Math.abs(e.alpha - 360);
-
-      const richtingVanuitNoord = 360 - pointDegree;
-      const richting = -compass - pointDegree;
-
-      const schermOrientatie = screenOrientation(screen.orientation.type);
-
-      compassCircle.style.transform = `translate(-50%, -50%) rotate(${(-compass - richtingVanuitNoord) + schermOrientatie}deg)`;
-
-      const kleur = afwijkingVanPunt(compass, pointDegree, schermOrientatie);
-
-      compassCircle.style["-webkit-filter"] = `saturate(250%) hue-rotate(${kleur}deg)`;
-      compassCircle.style["filter"] = `saturate(250%) hue-rotate(${kleur}deg)`;
-
-      //distanceTxt.textContent = "Scherm: " + schermOrientatie + ", compass:" + compass + ", punt:" + pointDegree + " kleur: " + kleur;
-
-      // ±15 degree
-      if ((pointDegree < Math.abs(compass) &&
-        pointDegree + 15 > Math.abs(compass)) || pointDegree > Math.abs(compass + 15) || pointDegree < Math.abs(compass)
-      ) {
-        //myPoint.style.opacity = 0;
-      } else if (pointDegree) {
-        //myPoint.style.opacity = 1;
-      }
+  function screenOrientation(orientation) {
+    switch (orientation) {
+      case "landscape-primary":
+        return -90;
+      case "landscape-secondary":
+        return 90;
+      case "portrait-secondary":
+        return 180;
+      case "portrait-primary":
+        return 0;
+      default:
+        return 0;
     }
+  }
 
-    function afwijkingVanPunt(compass, pointDegree, schermOrientatie) {
+  let pointDegree;
 
-      //0 = groen; -120 = rood
-      let graden = 0;
-      if (compass > pointDegree) {
-        graden = compass - pointDegree;
-      } else {
-        graden = pointDegree - compass;
-      }
-      //distanceTxt.textContent = graden;
+  function locationHandler(position) {
+    const { latitude, longitude } = position.coords;
+    pointDegree = calcDegreeToPoint(latitude, longitude);
+    //calculate distance in meters from current location to point
 
-      graden = graden + schermOrientatie;
+    const distance = calcDistance(latitude, longitude);
 
-      if (screen.orientation.type == "landscape-secondary") {
-        graden = graden - 180;
-      }
-      //graden moet altijd een negatief getal 
-      if (graden > 0) {
-        graden = graden * -1;
-      }
+    distanceTxt.textContent = "Ongeveer " + Math.round(distance) + " meter";
 
-      if (graden < -120) {
-        graden = -120;
-      }
-      return graden;
+    if (distance < 20) {
+      nextInfo.style.display = "block";
+      document.body.offsetHeight; //enable css transition
+      nextInfo.style.opacity = 1;
     }
-
-    function screenOrientation(orientation) {
-      switch (orientation) {
-        case "landscape-primary":
-          return -90;
-        case "landscape-secondary":
-          return 90;
-        case "portrait-secondary":
-          return 180;
-        case "portrait-primary":
-          return 0;
-        default:
-          return 0;
-      }
-    }
-
-    let pointDegree;
-
-    function locationHandler(position) {
-      const { latitude, longitude } = position.coords;
-      pointDegree = calcDegreeToPoint(latitude, longitude);
-      //calculate distance in meters from current location to point
-
-      const distance = calcDistance(latitude, longitude);
-
-      distanceTxt.textContent = "Ongeveer " + Math.round(distance) + " meter";
-
-      if (distance < 20) {
-        nextInfo.style.display = "block";
-        document.body.offsetHeight; //enable css transition
-        nextInfo.style.opacity = 1;
-      }
-      else {
-        nextInfo.style.opacity = 0;
-        nextInfo.style.display = "none";
-      }
-
-
-      //pointDegree wijst naar het punt, in graden vanaf het noorden, waar je naartoe moet lopen
-
-      if (pointDegree < 0) {
-        pointDegree = pointDegree + 360;
-      }
-    }
-
-    function degreesToRadians(degrees) {
-      return degrees * Math.PI / 180;
+    else {
+      nextInfo.style.opacity = 0;
+      nextInfo.style.display = "none";
     }
 
 
-    function calcDistance(latitude, longitude) {
+    //pointDegree wijst naar het punt, in graden vanaf het noorden, waar je naartoe moet lopen
 
-      var lat1 = latitude;
-      var lon1 = longitude;
-      var lat2 = point.lat;
-      var lon2 = point.lng;
-
-      var earthRadiusM = 6378160;
-
-      var dLat = degreesToRadians(lat2 - lat1);
-      var dLon = degreesToRadians(lon2 - lon1);
-
-      lat1 = degreesToRadians(lat1);
-      lat2 = degreesToRadians(lat2);
-
-      var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
-      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      return earthRadiusM * c;
+    if (pointDegree < 0) {
+      pointDegree = pointDegree + 360;
     }
+  }
 
-    function calcDegreeToPoint(latitude, longitude) {
+  function degreesToRadians(degrees) {
+    return degrees * Math.PI / 180;
+  }
 
-      const phiK = (point.lat * Math.PI) / 180.0;
-      const lambdaK = (point.lng * Math.PI) / 180.0;
-      const phi = (latitude * Math.PI) / 180.0;
-      const lambda = (longitude * Math.PI) / 180.0;
-      const psi =
-        (180.0 / Math.PI) *
-        Math.atan2(
-          Math.sin(lambdaK - lambda),
-          Math.cos(phi) * Math.tan(phiK) -
-          Math.sin(phi) * Math.cos(lambdaK - lambda)
-        );
-      return Math.round(psi);
-    }
 
-    init();
+  function calcDistance(latitude, longitude) {
+
+    var lat1 = latitude;
+    var lon1 = longitude;
+    var lat2 = point.lat;
+    var lon2 = point.lng;
+
+    var earthRadiusM = 6378160;
+
+    var dLat = degreesToRadians(lat2 - lat1);
+    var dLon = degreesToRadians(lon2 - lon1);
+
+    lat1 = degreesToRadians(lat1);
+    lat2 = degreesToRadians(lat2);
+
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return earthRadiusM * c;
+  }
+
+  function calcDegreeToPoint(latitude, longitude) {
+
+    const phiK = (point.lat * Math.PI) / 180.0;
+    const lambdaK = (point.lng * Math.PI) / 180.0;
+    const phi = (latitude * Math.PI) / 180.0;
+    const lambda = (longitude * Math.PI) / 180.0;
+    const psi =
+      (180.0 / Math.PI) *
+      Math.atan2(
+        Math.sin(lambdaK - lambda),
+        Math.cos(phi) * Math.tan(phiK) -
+        Math.sin(phi) * Math.cos(lambdaK - lambda)
+      );
+    return Math.round(psi);
+  }
+
+  init();
 </script>
 
 </html>
