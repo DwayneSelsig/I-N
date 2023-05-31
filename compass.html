@@ -122,7 +122,7 @@
 
 </body>
 <script>
-  const point = getPointerFromUrl();
+  var point = getPointerFromUrl();
 
   function getPointerFromUrl() {
 
@@ -227,6 +227,7 @@
 
   function handler(e) {
     compass = e.webkitCompassHeading || Math.abs(e.alpha - 360);
+    point = getPointerFromUrl();
 
     const richtingVanuitNoord = 360 - pointDegree;
     const richting = -compass - pointDegree;
