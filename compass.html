@@ -307,19 +307,21 @@
     distanceTxt.textContent = "Ongeveer " + Math.round(distance) + " meter";
 
     if (distance < 20) {
-      nextInfo.style.display = "block";
-      document.body.offsetHeight; //enable css transition
-      nextInfo.style.opacity = 1;
-      setTimeout(() => {
-        //get current url
-        var url = window.location.href;
-        //add 1 to punt
-        const urlParams = new URLSearchParams(window.location.search);
-        const punt = urlParams.get('punt');
-        var newUrl = url.replace("punt=" + punt, "punt=" + (parseInt(punt) + 1));
-        //change url
-        window.history.pushState("", "", newUrl);
-      }, 3000);
+      if (nextInfo.style.display == "none") {
+        nextInfo.style.display = "block";
+        document.body.offsetHeight; //enable css transition
+        nextInfo.style.opacity = 1;
+        setTimeout(() => {
+          //get current url
+          var url = window.location.href;
+          //add 1 to punt
+          var urlParams = new URLSearchParams(window.location.search);
+          var punt = urlParams.get('punt');
+          var newUrl = url.replace("punt=" + punt, "punt=" + (parseInt(punt) + 1));
+          //change url
+          window.history.pushState("", "", newUrl);
+        }, 3000);
+      }
     }
     else {
       nextInfo.style.opacity = 0;
