@@ -121,6 +121,34 @@
 
 </body>
 <script>
+    // Kiek in de pot
+    const point = {
+      lat: 51.490807, 
+      lng: 4.285290
+     };
+
+      // De zalm
+    //const point = {
+    //  lat: 51.493286, 
+     // lng: 4.286921
+    // };
+
+
+    // Geitje
+   // const point = {
+    //  lat: 51.497380,
+   //   lng: 4.290578
+   //  };
+
+    // Korenbeurssstraat
+   // const point = {
+   //   lat: 51.495300,
+   //   lng: 4.291718
+   // };
+
+
+
+
   const compassCircle = document.querySelector(".compass-circle");
   //const myPoint = document.querySelector(".my-point");
   const distanceTxt = document.getElementById("distance");
@@ -255,17 +283,6 @@
 
 
   function calcDistance(latitude, longitude) {
-    // Kiek in de pot
-    const point = {
-      lat: 51.490557, 
-      lng: 4.285614
-     };
-
-    // Korenbeurssstraat
-    //const point = {
-    //  lat: 51.495218,
-    //  lng: 4.291660
-    //};
 
     var lat1 = latitude;
     var lon1 = longitude;
@@ -287,24 +304,6 @@
   }
 
   function calcDegreeToPoint(latitude, longitude) {
-
-    // Korenbeurssstraat
-    //const point = {
-    //  lat: 51.495218,
-    //  lng: 4.291660
-    //};
-
-    // Geitje
-    //const point = {
-    //  lat: 51.497204,
-    //  lng: 4.290514
-    // };
-
-    // Kiek in de pot
-    const point = {
-      lat: 51.490557, 
-      lng: 4.285614
-     };
 
     const phiK = (point.lat * Math.PI) / 180.0;
     const lambdaK = (point.lng * Math.PI) / 180.0;
