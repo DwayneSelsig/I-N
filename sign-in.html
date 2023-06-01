@@ -186,7 +186,8 @@
         alert("De ingevoerde code is niet correct");
       }
     }
-    
+
+    alert(window.location.href.indexOf("solution"));
     //if solution exists in url, show solution
     if (window.location.href.indexOf("solution") > -1) {
       document.getElementById("solution").style.display = "block";
