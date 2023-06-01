@@ -166,15 +166,32 @@
 
       if (cijfer1 == "9" && cijfer2 == "12" && cijfer3 == "3" && cijfer4 == "16") {
         alert("Correct");
+
         //verander de display van de oplossing
         document.getElementById("solution").style.display = "block";
         //verander de display van de riddle
         document.getElementById("riddle").style.display = "none";
+        //get current url
+        var url = window.location.href;
+
+        //if solution doesn't exist in url, add it
+        if (url.indexOf("solution") == -1) {
+          //append solution=1 to url
+          var newUrl = url + "?solution=1";
+          //change url
+          window.history.pushState("", "", newUrl);
+        }
+
       } else {
         alert("De ingevoerde code is niet correct");
       }
     }
-
+    
+    //if solution exists in url, show solution
+    if (window.location.href.indexOf("solution") > -1) {
+      document.getElementById("solution").style.display = "block";
+      document.getElementById("riddle").style.display = "none";
+    }
 
 
   </script>
@@ -184,11 +201,11 @@
   <main class="form-signin w-100 m-auto">
     <form>
       <div id="solution" style="display: none;">
-          <button id="femalebutton" type="button" onclick="window.location.href='./compass.html?user=nathalie&punt=1';"
-            class="btn btn-secondary btn-lg btn-block form-control solutionbutton">人物 1 ♀</button>
+        <button id="femalebutton" type="button" onclick="window.location.href='./compass.html?user=nathalie&punt=1';"
+          class="btn btn-secondary btn-lg btn-block form-control solutionbutton">人物 1 ♀</button>
 
-          <button type="button" id="malebutton" onclick="window.location.href='./compass.html?user=ingo&punt=1';"
-            class="btn btn-primary btn-lg btn-block form-control solutionbutton">人物 2 ♂</button>
+        <button type="button" id="malebutton" onclick="window.location.href='./compass.html?user=ingo&punt=1';"
+          class="btn btn-primary btn-lg btn-block form-control solutionbutton">人物 2 ♂</button>
 
       </div>
       <div id="riddle">
