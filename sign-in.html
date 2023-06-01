@@ -153,49 +153,7 @@
       margin-top: 20px;
       margin-bottom: 20px;
     }
-  </style>
-
-
-  <script>
-    //controleer de waardes van de inputvelden
-    function check() {
-      var cijfer1 = document.getElementById("cijfer1").value;
-      var cijfer2 = document.getElementById("cijfer2").value;
-      var cijfer3 = document.getElementById("cijfer3").value;
-      var cijfer4 = document.getElementById("cijfer4").value;
-
-      if (cijfer1 == "9" && cijfer2 == "12" && cijfer3 == "3" && cijfer4 == "16") {
-        alert("Correct");
-
-        //verander de display van de oplossing
-        document.getElementById("solution").style.display = "block";
-        //verander de display van de riddle
-        document.getElementById("riddle").style.display = "none";
-        //get current url
-        var url = window.location.href;
-
-        //if solution doesn't exist in url, add it
-        if (url.indexOf("solution") == -1) {
-          //append solution=1 to url
-          var newUrl = url + "?solution=1";
-          //change url
-          window.history.pushState("", "", newUrl);
-        }
-
-      } else {
-        alert("De ingevoerde code is niet correct");
-      }
-    }
-
-    alert(window.location.href.indexOf("solution"));
-    //if solution exists in url, show solution
-    if (window.location.href.indexOf("solution") > -1) {
-      document.getElementById("solution").style.display = "block";
-      document.getElementById("riddle").style.display = "none";
-    }
-
-
-  </script>
+  </style> 
 </head>
 
 <body class="text-center">
@@ -308,8 +266,46 @@
     </form>
   </main>
 
-
-
 </body>
+
+<script>
+  //controleer de waardes van de inputvelden
+  function check() {
+    var cijfer1 = document.getElementById("cijfer1").value;
+    var cijfer2 = document.getElementById("cijfer2").value;
+    var cijfer3 = document.getElementById("cijfer3").value;
+    var cijfer4 = document.getElementById("cijfer4").value;
+
+    if (cijfer1 == "9" && cijfer2 == "12" && cijfer3 == "3" && cijfer4 == "16") {
+      alert("Correct");
+
+      //verander de display van de oplossing
+      document.getElementById("solution").style.display = "block";
+      //verander de display van de riddle
+      document.getElementById("riddle").style.display = "none";
+      //get current url
+      var url = window.location.href;
+
+      //if solution doesn't exist in url, add it
+      if (url.indexOf("solution") == -1) {
+        //append solution=1 to url
+        var newUrl = url + "?solution=1";
+        //change url
+        window.history.pushState("", "", newUrl);
+      }
+
+    } else {
+      alert("De ingevoerde code is niet correct");
+    }
+  }
+
+  //if solution exists in url, show solution
+  if (window.location.href.indexOf("solution") > -1) {
+    document.getElementById("solution").style.display = "block";
+    document.getElementById("riddle").style.display = "none";
+  }
+
+
+</script>
 
 </html>
