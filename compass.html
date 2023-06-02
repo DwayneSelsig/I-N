@@ -211,6 +211,13 @@
               lng: 4.285290
             };
             break;
+          case "3":
+            // Playdome Roosendaal
+            return {
+              lat: 51.535275,
+              lng: 4.431536
+            };
+            break;
         }
         break;
       case "nathalie":
@@ -227,6 +234,13 @@
             return {
               lat: 51.497380,
               lng: 4.290578
+            };
+            break;
+          case "3":
+            // Playdome Roosendaal
+            return {
+              lat: 51.535275,
+              lng: 4.431536
             };
             break;
         }
@@ -364,7 +378,7 @@
           //change text of nextStatus
           document.getElementById("nextStatus").innerHTML = "新しい座標が見つかりました";
           //change style of font-size to x-large
-          document.getElementById("nextStatus").style.fontSize = "x-large"; 
+          document.getElementById("nextStatus").style.fontSize = "x-large";
         }, 5000);
         setTimeout(() => {
           //change text of nextStatus
@@ -381,7 +395,7 @@
           //change url
           window.history.pushState("", "", newUrl);
         }, 8000);
-        
+
       }
     }
     else {
