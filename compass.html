@@ -382,11 +382,6 @@
           document.getElementById("nextStatus").style.fontSize = "x-large";
         }, 5000);
         setTimeout(() => {
-          //change text of nextStatus
-          document.getElementById("nextStatus").innerHTML = "走査...";
-          //change style of font-size to xxx-large
-          document.getElementById("nextStatus").style.fontSize = "xxx-large";
-
           //get current url
           var url = window.location.href;
           //add 1 to punt
@@ -396,6 +391,12 @@
           //change url
           window.history.pushState("", "", newUrl);
         }, 8000);
+        setTimeout(() => {
+          //change text of nextStatus
+          document.getElementById("nextStatus").innerHTML = "走査...";
+          //change style of font-size to xxx-large
+          document.getElementById("nextStatus").style.fontSize = "xxx-large";
+        }, 12000);
 
       }
     }
