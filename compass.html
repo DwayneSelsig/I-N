@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
   <meta charset="UTF-8" />
@@ -159,7 +159,7 @@
     <div class="box">
       <div class="infoText">
         <div class="checkmark"></div>
-        <p id="nextStatus">Scannen...</p>
+        <p id="nextStatus">走査...</p>
       </div>
     </div>
   </div>
@@ -353,7 +353,7 @@
 
     const distance = calcDistance(latitude, longitude);
 
-    distanceTxt.textContent = "Ongeveer " + Math.round(distance) + " meter";
+    distanceTxt.textContent = "約" + Math.round(distance) + "メートル";
 
     if (distance < 12) {
       if (nextInfo.style.display == "none") {
@@ -362,13 +362,13 @@
         nextInfo.style.opacity = 1;
         setTimeout(() => {
           //change text of nextStatus
-          document.getElementById("nextStatus").innerHTML = "Nieuwe coördinaten gevonden!";
+          document.getElementById("nextStatus").innerHTML = "新しい座標が見つかりました";
           //change style of font-size to x-large
           document.getElementById("nextStatus").style.fontSize = "x-large"; 
         }, 5000);
         setTimeout(() => {
           //change text of nextStatus
-          document.getElementById("nextStatus").innerHTML = "Scannen...";
+          document.getElementById("nextStatus").innerHTML = "走査...";
           //change style of font-size to xxx-large
           document.getElementById("nextStatus").style.fontSize = "xxx-large";
 
