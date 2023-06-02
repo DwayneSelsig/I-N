@@ -104,64 +104,63 @@
       width: 100%;
     }
 
-    .next {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            left: 0;
-            top: 0;
-            outline-offset: 10px;
-            position: relative;
-        }
+    .box {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      left: 0;
+      top: 0;
+      outline-offset: 10px;
+      position: relative;
+    }
 
-        .next::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            width: 20px;
-            background: #18c89b;
-            box-shadow: 0 0 70px 20px #18c89b;
-            clip-path: inset(0);
-            animation:
-                x 1s ease-in-out infinite alternate,
-                y 2s ease-in-out infinite;
-        }
+    .box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 20px;
+      background: #18c89b;
+      box-shadow: 0 0 70px 20px #18c89b;
+      clip-path: inset(0);
+      animation:
+        x 1s ease-in-out infinite alternate,
+        y 2s ease-in-out infinite;
+    }
 
-        @keyframes x {
-            to {
-                transform: translateX(-100%);
-                left: 100%;
-            }
-        }
+    @keyframes x {
+      to {
+        transform: translateX(-100%);
+        left: 100%;
+      }
+    }
 
-        @keyframes y {
-            33% {
-                clip-path: inset(0 0 0 -100px);
-            }
+    @keyframes y {
+      33% {
+        clip-path: inset(0 0 0 -100px);
+      }
 
-            50% {
-                clip-path: inset(0 0 0 0);
-            }
+      50% {
+        clip-path: inset(0 0 0 0);
+      }
 
-            83% {
-                clip-path: inset(0 -100px 0 0);
-            }
-        }
-
-
-
+      83% {
+        clip-path: inset(0 -100px 0 0);
+      }
+    }
   </style>
 </head>
 
 <body>
   <div class="next">
-    <div class="infoText">
-      <div class="checkmark"></div>
-      <p>Ga door naar het volgende punt:</p>
-      <button class="btnNext" onclick="window.location.href='/';">Volgende punt</button>
+    <div class="box">
+      <div class="infoText">
+        <div class="checkmark"></div>
+        <p>Ga door naar het volgende punt:</p>
+        <button class="btnNext" onclick="window.location.href='/';">Volgende punt</button>
+      </div>
     </div>
   </div>
   <div class="compass">
