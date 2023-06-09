@@ -319,7 +319,15 @@
     var cijfer3 = document.getElementById("cijfer3").value;
     var cijfer4 = document.getElementById("cijfer4").value;
 
-    if (cijfer1 == "9" && cijfer2 == "12" && cijfer3 == "3" && cijfer4 == "16") {
+    //check of cijfer1 t/m 4 de juiste waardes hebben
+    //cast de cijfers naar een nummer
+    cijfer1 = parseInt(cijfer1);
+    cijfer2 = parseInt(cijfer2);
+    cijfer3 = parseInt(cijfer3);
+    cijfer4 = parseInt(cijfer4);
+
+
+    if (cijfer1 == 9 && cijfer2 == 12 && cijfer3 == 3 && cijfer4 == 16) {
       //alert("Correct");
 
       //verander de display van de oplossing
