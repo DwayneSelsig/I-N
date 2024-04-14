@@ -19,9 +19,9 @@ Elk bestand draagt bij aan het thema en de navigatie van de dag, verrijkt met cu
 ## Oplossingen voor puzzels
 
 1. **Eerste Puzzel**: Ga naar de Peperbus - de bekende kerktoren op de grote markt in Bergen op Zoom.
-2. **Tweede Puzzel**: Cijfercombinatie die leidde naar de volgende locatie: 9, 12, 3, en 16.
+2. **Tweede Puzzel**: Cijfercombinatie die in de textboxen moet worden ingevoerd is: 9, 12, 3, en 16.
 3. **Derde Puzzel**: De groep splitste op in dames en heren, waarbij elke groep een andere route volgde naar verschillende geografische punten.
 
 ## Website
 
-De website is nog steeds te bezoeken via [https://dwayneselsig.github.io/Nathalie-en-Ingo-Undercover/](https://dwayneselsig.github.io/Nathalie-en-Ingo-Undercover/)
+De website is te bezoeken via [https://dwayneselsig.github.io/Nathalie-en-Ingo-Undercover/](https://dwayneselsig.github.io/Nathalie-en-Ingo-Undercover/)
